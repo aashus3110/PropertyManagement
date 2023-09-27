@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{%block css%}
+.container {
+width: 700px;
+}
+label {
+display: inline-block;
+margin-bottom: 0.1rem;
+}
+
+.mb-auto, .my-auto {
+margin-bottom: auto!important;
+width: 200px;
+}
+
+.col-md-4 {
+flex: 0 0 50%;
+max-width: none;
+}
+
+.card-img-top{
+width: 300px;
+height: 200px;
+border-radius: 100px;
+}
+.mx{
+display: flex;
+}
+.col {
+display: flex;
+max-width: 100%;
+margin-bottom: 20px;
+}
+.mz{
+width: 200px;
+padding-left: 70px;
+}
+.col-md-8 {
+height: 200px;
+flex: 0 0 50%;
+max-width: 50%;
+}
+.btn:not(:disabled):not(.disabled) {
+cursor: pointer;
+padding-top: 0px;
+padding-bottom: 0px;
+border-top-width: 0px;
+border-bottom-width: 0px;
+}
+
+
+
+.row {
+height: 100%;
+width: 100%;
+}
+{%endblock css%}
+
+{% block body%}
+<hr>
+<div class="mx">
+    <div class="row g-5">
+        <div class="col-md-8">
+            {% for Property in prop %}
+            <div class="col">
+                <img src='media/{{Property.image}}' class="card-img-top" alt="...">
+                <div class="mz">
+                    <strong class="d-inline-block mb-2 text-primary">{{Property.Name}}</strong>
+                    <p class="card-text mb-auto">{{Property.location}}</p>
+                    <p class="card-text mb-auto">{{Property.type}}</p>
+                    <p class="card-text mb-auto">{{Property.detail| truncatechars:30 }}</p>
+                    <p class="card-text mb-auto">{{Property.Email}}</p>
+                    <p class="card-text mb-auto">{{Property.Phone}}</p>
+                    <p class="card-text mb-auto">{{Property.Relation}}</p>
+                    <a href="https://wa.me/+917620753992" class="btn btn-primary" class="stretched-link">Contact Us </a>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="position-sticky" style="top: 2rem;">
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="fst-italic">Add your Property details ready to sell your Property</h4>
+                    <form style="margin-top: 20px;" method="post" action="propsell" enctype="multiple/from-data">
+                        <div class="mb-3">
+                            <label for="image">Image</label>
+                            <input type="file" class="form-control" multiple id="image" name="image">
+
+                            <label for="Name">Name</label>
+                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter your name">
+
+                            <label for="location"> Property Location</label>
+                            <input type="text" class="form-control" id="location" name="location"
+                                placeholder="Enter your Property Location">
+
+                            <label for="type">Type of Property</label>
+                            <input type="text" class="form-control" id="type" name="type"
+                                placeholder="eg :- 1BHK, 2BHK, Flat, etc..">
+
+                            <label for="Relation">Relation With Property</label>
+                            <input type="text" class="form-control" id="Relation" name="Relation"
+                                placeholder="Enter Relation With Property">
+
+                            <label for="value">Value</label>
+                            <input type="text" class="form-control" id="value" name="value"
+                                placeholder="Enter the min & max Number of Property Value">
+
+                            <label for="detail">Enter Property Detail</label>
+                            <textarea class="form-control" id="detail" name="detail" placeholder="Enter Property Detail"
+                                rows="3"></textarea>
+
+                            <label for="Email">Email</label>
+                            <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter Email">
+
+                            <label for="Phone" class="form-label">Enter phone Number</label>
+                            <input type="Number" class="form-control" id="Phone" name="Phone"
+                                placeholder="Enter Phone Number">
+                        </div>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {%endblock body%}

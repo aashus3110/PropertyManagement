@@ -1,0 +1,18 @@
+django-admin startproject
+python manage.py startapp
+python manage.py runserver
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+https://source.unsplash.com/1600x600/?Home
+
+
+blackking
+8623989585
+
+git init
+git add -A
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/aashus3110/PropertyManagement.git
+git push -u origin main

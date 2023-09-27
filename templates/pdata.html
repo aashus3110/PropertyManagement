@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block css %}
+
+.fomcon{
+background: url(../static/img/bg3.jpg) no-repeat center center/cover;
+
+}
+
+h3{
+color: aliceblue;
+font-family: 'Merriweather', serif;
+padding-top: 2vw;
+text-decoration: underline;
+font-size: 1.75rem;
+text-align: center;
+margin-bottom: 2vw;
+}
+
+label {
+color: black;
+width: 100%;
+display: inline-block;
+margin-bottom: 0.5vw;
+font-family: 'Fira Sans', sans-serif;
+}
+
+.input{
+border: none;
+background-color: #e5feff;
+width: 100%;
+height: 2.1vw;
+border-radius: 2vw;
+padding-left: 2vw;
+}
+
+.form{
+height: 37vw;
+padding-top: 1vw;
+border-radius: 2vw;
+margin-left: 20vw;
+margin-right: 20vw;
+}
+
+.button{
+margin-right: 40%;
+width: 10vw;
+margin-left: 40%;
+border: 2px solid blue;
+border-radius: 2vw;
+cursor: pointer;
+background-color: aqua;
+}
+
+{% endblock css %}
+{% block body %}
+<div class="fomcon">
+    <h3>Add your Property details ready to sell your Property</h3>
+    {% csrf_token %}
+    <div class="form">
+        <form method="post" action="/pdata" enctype="multiple/from-data">
+            <label for="image">Image</label>
+            <input type="file" class="input" multiple id="image" name="image">
+
+            <label for="Name">Name</label>
+            <input type="text"class="input" id="Name" name="Name" placeholder="Enter your name">
+
+            <label for="location"> Property Location</label>
+            <input type="text" class="input" id="location" name="location"
+                placeholder="Enter your Property Location">
+
+            <label for="type">Type of Property</label>
+            <input type="text" class="input" id="type" name="type" placeholder="eg :- 1BHK, 2BHK, Flat, etc..">
+
+            <label for="Relation">Relation With Property</label>
+            <input type="text" class="input" id="Relation" name="Relation"
+                placeholder="Enter Relation With Property">
+
+            <label for="value">Value</label>
+            <input type="text" class="input" id="value" name="value"
+                placeholder="Enter the min & max Number of Property Value">
+
+            <label for="detail">Enter Property Detail</label>
+            <textarea  id="detail" name="detail" class="input" placeholder="Enter Property Detail"
+                rows="2"></textarea>
+
+            <label for="Phone">Enter phone Number</label>
+            <input type="Number"  class="input" id="Phone" name="Phone" placeholder="Enter Phone Number">
+    </div>
+    {% csrf_token %}
+    <button type="submit" class="button">Submit</button>
+    </form>
+
+</div>
+</div>
+</div>
+{% endblock body %}

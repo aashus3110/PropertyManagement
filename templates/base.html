@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <title>{% block title%} {% endblock title %}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital@1&display=swap');
+
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .contener {
+      height: 25vw;
+    }
+
+    .contener::before {
+      content: "";
+      position: absolute;
+      background: url(../static/img/bg4.jpg) no-repeat center center/cover;
+      height: 25vw;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      z-index: -1;
+      opacity: 0.89;
+    }
+
+    .item {
+      height: 4vw;
+      display: flex;
+      width: 100%;
+    }
+
+    .item::before {
+      content: "";
+      background-color: black;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 4vw;
+      width: 100%;
+      z-index: -1;
+      opacity: 0.7;
+    }
+
+    .logo {
+      margin-left: 1vw;
+      font-family: 'Merriweather', serif;
+      padding: 14px;
+      height: 4vw;
+      width: 15%;
+    }
+
+    .link {
+      margin-left: 9vw;
+      padding: 14px;
+      height: 4vw;
+      display: flex;
+      width: 40%;
+    }
+
+    li {
+      margin-top: 4px;
+      height: 2vw;
+      margin-left: 10px;
+      margin-right: 10px;
+      text-decoration: none;
+      display: flex;
+    }
+
+    .see {
+      padding: 14px;
+      height: 4vw;
+      width: 35%;
+      display: flex;
+    }
+
+    .see,
+    ul {
+      display: flex;
+      margin: 0 4px
+    }
+
+    .in {
+      height: 2vw;
+      width: 13vw;
+      border: white 2px;
+      border-radius: 10px;
+
+    }
+
+    .bt {
+      width: 60px;
+      box-shadow: 0 3px #999;
+      outline: none;
+      cursor: pointer;
+      border-radius: 1.1vw;
+      background-color: rgb(129, 212, 218);
+    }
+
+    .bt:hover {
+      background: rgb(87, 160, 209);
+      color: rgb(0, 0, 0);
+    }
+
+
+    a {
+      color: white;
+      font-family: 'Fira Sans', sans-serif;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: rgb(134, 101, 10);
+    }
+
+    .pe {
+      margin-top: 12vw;
+      color: white;
+    }
+
+    .pe::before {
+      content: "";
+      margin-top: 16vw;
+      background-color: black;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 6vw;
+      width: 100%;
+      z-index: -1;
+      opacity: 0.7;
+    }
+
+    l {
+      font-family: 'Merriweather', serif;
+      font-size: 18px;
+    }
+
+
+    h2 {
+      font-family: 'Merriweather', serif;
+      text-align: center;
+      text-decoration: underline;
+      color: white;
+
+    }
+
+    p {
+      font-size: 1.1vw;
+      text-decoration: underline;
+      text-align: center;
+      color: white;
+      font-family: 'Fira Sans', sans-serif;
+    }
+
+    .dropdown-menu {
+      background-color: gray;
+    }
+
+    input[type="search" i] {
+      padding: 1px 10px;
+  }
+      {% block css %}      {% endblock css %}
+  </style>
+
+</head>
+
+<body>
+
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong> Message : </strong> {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+
+  <div class="contener">
+
+    <nav class="item">
+      <div class="logo">
+        <l>
+          <a href="/">Get New Property</a>
+        </l>
+      </div>
+      <div class="link">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="propsell">Buy New Property</a>
+        </li>
+        <li>
+          <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+            Other
+          </a>
+          <div class="dropdown-menu">
+            <a href="#">About Us</a>
+            <div class="dropdown-divider"></div>
+            <a href="cdata">Add Your Company</a>
+            <div class="dropdown-divider"></div>
+            <a href="pdata">Post Your Property</a>
+            <div class="dropdown-divider"></div>
+            <a href="Contact">Contact Us</a>
+          </div>
+        </li>
+      </div>
+      <div class="see">
+        <ul>
+          <form method="get" action="/search">
+            <input class="in" type="search" placeholder="Search" name="query" id="query">
+            <button class="bt" type="submit">Search</button>
+          </form>
+          {% if user.is_authenticated %}
+          <ul>
+            <li>
+              <a class="dropdown-toggle" href='#' id="navbarDropdown" role="button" data-toggle="dropdown">
+                Welcome
+                {{request.user}}</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </li>
+          </ul>
+          {% endif %}
+      </div>
+    </nav>
+    <div class="pe">
+      <h2>Welcome to our site</h2>
+      <p>here we are selling a all type of Property and we wish you like our Property</p>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+
+
+
+  {% block body %} {% endblock body %}
+
+</body>
+
+
+</html>

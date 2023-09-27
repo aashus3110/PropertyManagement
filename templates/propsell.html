@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{%block css%}
+.container {
+width: 700px;
+}
+label {
+display: inline-block;
+margin-bottom: 0.1rem;
+}
+
+.mb-auto, .my-auto {
+margin-bottom: auto!important;
+width: 200px;
+}
+
+.col-md-4 {
+flex: 0 0 50%;
+max-width: none;
+}
+
+.card-img-top{
+width: 300px;
+height: 200px;
+border-radius: 100px;
+}
+.mx {
+display: flex;
+flex-direction: column;
+}
+.col {
+display: flex;
+max-width: 100%;
+margin-bottom: 20px;
+}
+.mz{
+width: 30vw;
+padding-left: 5vw;
+}
+.col-md-8 {
+height: 200px;
+flex: 0 0 50%;
+max-width: 50%;
+}
+.btn:not(:disabled):not(.disabled) {
+cursor: pointer;
+padding-top: 0px;
+padding-bottom: 0px;
+border-top-width: 0px;
+border-bottom-width: 0px;
+}
+
+.po{
+margin: 2px;
+font-size: 1.1vw;
+text-decoration: none;
+text-align: left;
+color: black;
+font-family: 'Fira Sans', sans-serif;
+}
+
+.row {
+height: 100%;
+width: 100%;
+}
+{%endblock css%}
+
+{% block body%}
+<hr>
+<div class="mx">
+    {% for Property in prop %}
+    <div class="col">
+        <img src='media/{{Property.image}}' class="card-img-top" alt="...">
+        <div class="mz">
+            <h4>{{Property.Name}}</h4>
+            <p class="po">{{Property.location}}</p>
+            <p class="po">{{Property.type}}</p>
+            <p class="po">{{Property.detail| truncatechars:40 }}</p>
+            <p class="po">{{Property.Phone}}</p>
+            <p class="po">{{Property.Relation}}</p>
+            <a href="https://wa.me/+917620753992" class="btn btn-primary" class="stretched-link">Contact Us </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{%endblock body%}

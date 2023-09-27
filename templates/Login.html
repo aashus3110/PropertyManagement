@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login to see New Property</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .contener {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin: 0 auto;
+        height: 100vw;
+        padding: 2rem;
+        justify-content: space-evenly;
+        background-color: blueviolet;
+      }
+
+      .loF {
+        width: 30%;
+        height: 50%;
+        margin: 0 auto;
+        background-color: gray;
+        border: 2px solid black;
+      }
+      .form {
+        top: 40px;
+        justify-content: center;
+        position: absolute;
+        height: 55%;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        left: 15vw;
+      }
+
+      .l_con {
+        height: 10%;
+        display: flex;
+        flex-direction: column;
+      }
+      .s_con {
+        height: 10%;
+        display: flex;
+        flex-direction: column;
+      }
+      h1 {
+        text-align: center;
+        margin: 2vw;
+      }
+      label {
+        padding-bottom: 2px;
+      }
+
+      .input {
+        padding: 8px;
+        font-size: 1vw;
+        height: 50px;
+        border-radius: 5px;
+        width: 190px;
+        border: none;
+      }
+
+      .btn {
+        box-shadow: 3px 3px darkgray;
+        outline: none;
+        cursor: pointer;
+        padding: 10px;
+        margin: 0 auto;
+        border-radius: 10px;
+        background-color: rgb(129, 212, 218);
+      }
+
+      .btn:hover {
+        background: rgb(87, 160, 209);
+        color: rgb(0, 0, 0);
+      }
+      .button {
+        margin: 0 auto;
+      }
+
+      p {
+        font-size: 1.2vw;
+      }
+
+      a {
+        cursor: pointer;
+        text-decoration: none;
+        color: rgb(122, 98, 228);
+      }
+
+      a:hover {
+        color: rgb(0, 204, 255);
+      }
+
+      .siup {
+        width: 30%;
+        height: 50%;
+        margin: 0 auto;
+        background-color: gray;
+        border: 2px solid black;
+      }
+      .s_form {
+        top: 25vh;
+        justify-content: center;
+        position: absolute;
+        height: 55%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        right: 20vw;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% for message in messages %}
+    <div
+      class="alert alert-{{ message.tags }} alert-dismissible fade show"
+      role="alert"
+    >
+      <strong> Message : </strong> {{ message }}
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    <div class="contener">
+      <div class="loF">
+        <h1>Login form</h1>
+        <form action="/login" class="form" method="POST">
+          <div class="l_con">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              class="input"
+              id="loginusername"
+              name="loginusername"
+              placeholder="Enter your username "
+              required
+            />
+          </div>
+          <div class="l_con">
+            <label for="pass">Enter your password </label><br />
+            <input
+              type="password"
+              class="input"
+              id="loginpassword"
+              name="loginpassword"
+              placeholder="Enter your password "
+              required
+            />
+          </div>
+          {% csrf_token %}
+          <div class="button">
+            <button type="submit" class="btn">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="siup">
+        <h1 id="signupModal">SignUp Here</h1>
+        <form action="/signup" class="s_form" method="post">
+          <div class="s_con">
+            <label for="username">Username</label>
+            <input
+              class="input"
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Choose a unique username"
+              required
+            />
+          </div>
+          <div class="s_con">
+            <label for="fname">First Name</label>
+            <input
+              class="input"
+              type="text"
+              id="fname"
+              name="fname"
+              placeholder="Enter Your First Name"
+              required
+            />
+          </div>
+          <div class="s_con">
+            <label for="lname">Last Name</label>
+            <input
+              class="input"
+              type="text"
+              id="lname"
+              name="lname"
+              placeholder="Enter Your Last Name"
+              required
+            />
+          </div>
+          <div class="s_con">
+            <label for="email">Email address</label>
+            <input
+              class="input"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="name@example.com"
+              required
+            />
+          </div>
+          <div class="s_con">
+            <label for="pass1">Choose a password</label>
+            <input
+              class="input"
+              type="password"
+              id="pass1"
+              name="pass1"
+              placeholder="Choose Your Password"
+              required
+            />
+          </div>
+          <div class="s_con">
+            <label for="pass2">Confirm Password</label>
+            <input
+              class="input"
+              type="password"
+              id="pass2"
+              name="pass2"
+              placeholder="Enter your password again"
+              required
+            />
+          </div>
+          {% csrf_token %}
+          <button type="submit" class="btn">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

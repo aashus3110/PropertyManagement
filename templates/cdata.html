@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block css %}
+
+.fomcon{
+background: url(../static/img/bg3.jpg) no-repeat center center/cover;
+
+}
+
+h3{
+color: aliceblue;
+font-family: 'Merriweather', serif;
+margin-top: 2vw;
+text-decoration: underline;
+font-size: 1.75rem;
+text-align: center;
+margin-bottom: 2vw;
+}
+
+label {
+color: black;
+width: 100%;
+display: inline-block;
+margin-bottom: 0.5vw;
+font-family: 'Fira Sans', sans-serif;
+}
+
+.input{
+border: none;
+background-color: #e5feff;
+width: 100%;
+height: 2.1vw;
+border-radius: 2vw;
+padding-left: 2vw;
+}
+
+.form{
+height: 40vw;
+padding-top: 3vw;
+border-radius: 2vw;
+margin-left: 20vw;
+margin-right: 20vw;
+}
+
+.button{
+margin-right: 40%;
+width: 10vw;
+margin-left: 40%;
+margin-top: 1.3vw;
+border: 2px solid blue;
+border-radius: 2vw;
+cursor: pointer;
+background-color: aqua;
+}
+
+{% endblock css %}
+{% block body %}
+<div class="fomcon">
+    <h3>Add your company details ready to sell your Property</h3>
+    {% csrf_token %}
+    <div class="form">
+        <form method="post" action="/cdata" enctype="multiple/from-data">
+            <div>
+                <label for="name">Company Name</label>
+                <input type="text" class="input" placeholder="Enter Company Name" id="Company_name" name="Company_name">
+            </div>
+            <div>
+                <label for="location">Location</label>
+                <input type="text" class="input" placeholder="Enter Company Location" id="Location" name="Location">
+            </div>
+            <div><label for="Value">Value</label>
+                <input type="text" class="input" placeholder="Enter the min & max Number of Property Value" id="value"
+                    name="value">
+            </div>
+            <div><label for="Phone">Phone Number</label>
+                <input type="Number" class="input" placeholder="Enter Phone Number" id="Phone" name="Phone">
+            </div>
+            <div><label for="email">Email address</label>
+                <input type="email" class="input" placeholder="Enter E-mail Id" id="Email" name="Email">
+            </div>
+            <div><label for="detail">Company detail</label>
+                <input type="text" class="input" placeholder="Enter Company detail" id="Company_detail"
+                    name="Company_detail">
+            </div>
+            <div><label for="image">Image</label>
+                <input type="file" class="input" multiple name="image" id="image">
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="button">Submit</button>
+        </form>
+
+    </div>
+</div>
+</div>
+{% endblock body %}

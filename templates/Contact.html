@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block css %}
+.concontect{
+height: 40vw;
+}
+.form{
+display: flex;
+width: 20vw;
+margin-right: 40vw;
+margin-left: 40vw;
+flex-direction: column;
+}
+
+.button {
+height: 2vw;
+box-shadow: 0 3px #999;
+outline: none;
+cursor: pointer;
+padding: 2px;
+margin-left: 48vw;
+margin-right: 48vw;
+border-radius: 1.1vw;
+background-color: rgb(129, 212, 218);
+margin-top: 1vw;
+}
+
+.button:hover {
+background: rgb(87, 160, 209);
+color: rgb(0, 0, 0);
+}
+{% endblock css %}
+{% block body %}
+
+
+<div class="concontect">
+    <form method="post" action="/Contact" enctype="multiple/from-data">
+        <div class="form">
+            <label for="Name">Name</label>
+            <input type="text" class="input" id="Name" name="Name" placeholder="Enter your Name">
+        </div>
+        <div class="form"> <label for="Email">Email</label>
+            <input type="Email" class="input" id="Email" name="Email" placeholder="Enter your Email">
+        </div>
+        <div class="form"> <label for="message">message</label>
+            <input type="text" class="input" id="message" name="message" placeholder="Enter your message">
+        </div>
+        {% csrf_token %}
+        <button type="submit" class="button">Submit</button>
+    </form>
+</div>
+
+
+{% endblock body %}
